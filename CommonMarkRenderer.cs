@@ -12,31 +12,31 @@ namespace Red.CommonMarkRenderer
         /// <summary>
         ///     Renders a CommonMark file and sends it
         /// </summary>
-        /// <param name="instance">The instance of the response</param>
+        /// <param name="response">The instance of the response</param>
         /// <param name="filePath">The path of the CommonMark file to be rendered</param>
         /// <param name="status">The status code for the response</param>
-        public static Task RenderFile(this Response instance, string filePath, HttpStatusCode status = HttpStatusCode.OK) => Task.Run(() =>
+        public static Task<HandlerType> RenderFile(this Response response, string filePath, HttpStatusCode status = HttpStatusCode.OK) => Task.Run(() =>
         {
             using (var reader = new System.IO.StreamReader(filePath))
-            using (var writer = new System.IO.StreamWriter(instance.UnderlyingResponse.Body))
+            using (var writer = new System.IO.StreamWriter(response.AspNetResponse.Body))
             {
                 CommonMark.CommonMarkConverter.Convert(reader, writer);
             }
-            instance.Closed = true;
+            return HandlerType.Final;
         });
 
         /// <summary>
         ///     Renders a string containing CommonMark text to HTML and sends it
         /// </summary>
-        /// <param name="instance">The instance of the response</param>
+        /// <param name="response">The instance of the response</param>
         /// <param name="commonMarkText">The CommonMark text to be converted to HTML and sent</param>
         /// <param name="fileName">The filename to specify in response header. Optional</param>
         /// <param name="status">The status code for the response</param>
         /// <returns></returns>
-        public static async Task RenderString(this Response instance, string commonMarkText, string fileName = null, HttpStatusCode status = HttpStatusCode.OK)
+        public static Task<HandlerType> RenderString(this Response response, string commonMarkText, string fileName = null, HttpStatusCode status = HttpStatusCode.OK)
         {
             var html = CommonMark.CommonMarkConverter.Convert(commonMarkText);
-            await instance.SendString(html, "text/html", fileName, status: status);
+            return response.SendString(html, "text/html", fileName, status: status);
         }
 
     }

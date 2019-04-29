@@ -4,18 +4,21 @@
     <Version>1.1.0</Version>
     <Authors>Malte Rosenbjerg</Authors>
     <Product>Red.CommonMarkRenderer</Product>
-    <Copyright>Copyright © Rosenbjerg 2018</Copyright>
+    <Copyright>Copyright © Rosenbjerg 2019</Copyright>
     <PackageLicenseUrl>https://github.com/rosenbjerg/Red.CommonMarkRenderer/blob/master/LICENSE.md</PackageLicenseUrl>
     <PackageProjectUrl>https://github.com/rosenbjerg/Red.CommonMarkRenderer</PackageProjectUrl>
     <PackageIconUrl>https://rosenbjerg.dk/red/logo.png</PackageIconUrl>
     <RepositoryUrl>https://github.com/rosenbjerg/Red.CommonMarkRenderer</RepositoryUrl>
     <RepositoryType>GitHub</RepositoryType>
     <PackageTags>red redhttpserver commonmark markdown render rhttpserver</PackageTags>
-    <PackageReleaseNotes>Change to NET Standard</PackageReleaseNotes>
+    <PackageReleaseNotes>Updated API to be consistent with Red v4</PackageReleaseNotes>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <PackageVersion>2.0.0</PackageVersion>
+    <Title>Red.CommonMarkRenderer</Title>
+    <Description>Extension for Red for rendering markdown/commonmark files as responses</Description>
   </PropertyGroup>
   <ItemGroup>
     <PackageReference Include="CommonMark.NET" Version="0.15.1" />
-    <PackageReference Include="RHttpServer" Version="3.5.2" />
+    <PackageReference Include="RHttpServer" Version="4.0.0" />
   </ItemGroup>
 </Project>
